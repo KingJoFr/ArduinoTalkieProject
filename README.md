@@ -14,16 +14,28 @@ bread board
 software/ libraries
 Voice Recorder(Android app on my phone)
 Arduino IDE
-Arduino Talkie Library
+Arduino Talkie Library( https://docs.arduino.cc/libraries/talkie/)
 ffmpeg
-python_wizard
+python_wizard ( https://github.com/ptwz/python_wizard)
 
 The process was:
-    1. Record on myself using my phone saying a phrase such as "Entering kitchen"
-    2. Upload that to my computer then use ffmpeg to convert it to wav format
-    3. Use python_wizard library to then convert that to lpc format
-    4. Put the lpc code into the arduino source code
-    5. Power up the Arduino and listen to my sad voice
+    1. Record myself using my phone saying a phrase such as "Entering kitchen". My app uses m4a.
+    2. Upload that to my computer.  How I did that exactly was to upload the audio to google drive then download it onto my computer.
+    3. Use ffmpeg to convert it to wav format.  Python_wizard seems to need .wav format.
+        The process to do that is
+        a.Download ffmpeg if you don't already have it.
+            I'm on linux and the steps for that in the terminal are
+            a1. sudo apt update
+            a2. sudo apt install ffmpeg
 
-I mean the sound quality is really bad when I say sad.  I haven't been able to figure out why it's so bad but I currently don't have much free time to dedicate to this project.
+        Continuing in the terminal and be sure to be in the directory of the file call ffmpeg:
+        b. ffmpeg -i [inputfile.m4a] [outputFile.wav]
+           the -i is for input
+    4. Use python_wizard library to then convert that to lpc format
+       In the terminal and in the directory of the file, with python 2.7 installed:
+            python python_wizard.py filename
+    5. Put the lpc code into the arduino source code
+    6. Power up the Arduino and listen to my garbled voice
+
+I haven't been able to figure out why it's so bad but I currently don't have much free time to dedicate to this project.  I imagine if I familiarized myself with the optional arguments of python_wizard I could produce higher quality audio.
 
